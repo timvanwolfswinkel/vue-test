@@ -23,7 +23,6 @@ export default {
     getFestival(this.$route.params.festivalId).then(response => {
       this.festival = response.data.fields
       this.dataLoaded = true
-      console.log(this.festival)
     })
   }
 }
