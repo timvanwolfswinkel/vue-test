@@ -1,6 +1,6 @@
 # vue-test
 
-> This is a Vue.js test project
+> This is a Vue test project for connecting to Contentful API
 
 ## Build Setup
 
