@@ -19,7 +19,7 @@ export default {
       const festivals = this.$store.getters.festivals
       const festivalId = this.$route.params.festivalId
       const festival = festivals.filter(festival => festival.sys.id === festivalId)
-      return festival.length !== 0 ? festival[0].fields : null
+      return festival.length !== 0 ? festival[0].fields : {}
     }
   }
 }
