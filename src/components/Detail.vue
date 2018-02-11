@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="festival">
+        <div class="festival" v-if="festival">
             <h1>{{ festival.name }}</h1>
             <h2>{{ festival.slogan }}</h2>
             <p>{{ festival.description }}</p>
@@ -9,21 +9,18 @@
 </template>
 
 <script>
-import { getFestival } from '../api/festivals'
+import store from '../store/store'
 
 export default {
-  name: 'Home',
-  data () {
-    return {
-      festival: {},
-      dataLoaded: false
+  store,
+  name: 'Detail',
+  computed: {
+    festival: function () {
+      const festivals = this.$store.getters.festivals
+      const festivalId = this.$route.params.festivalId
+      const festival = festivals.filter(festival => festival.sys.id === festivalId)
+      return festival.length !== 0 ? festival[0].fields : null
     }
-  },
-  mounted () {
-    getFestival(this.$route.params.festivalId).then(response => {
-      this.festival = response.data.fields
-      this.dataLoaded = true
-    })
   }
 }
 </script>

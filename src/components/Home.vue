@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <h1 class="heading">{{ header }}</h1>
-        <div v-if="dataLoaded">
+        <div v-if="!loading">
             <div class="festivals" v-for="festival in festivals" :key="festival.name">
                 <div class="festival">
                     <router-link :to=" {name: 'Detail', params: { festivalId : festival.sys.id } }" >
@@ -14,24 +14,21 @@
 </template>
 
 <script>
-import { getFestivals } from '../api/festivals'
+import Vuex from 'vuex'
+const mapState = Vuex.mapState
 
 export default {
   name: 'Home',
   data () {
     return {
-      header: 'Festivals',
-      festivals: [],
-      dataLoaded: false
+      header: 'Festivals'
     }
   },
-  mounted () {
-    getFestivals().then(response => {
-      this.festivals = response.data.items
-      this.dataLoaded = true
-
-      console.log(this.festivals)
-    })
+  computed: {
+    ...mapState(['loading']),
+    festivals () {
+      return this.$store.getters.festivals
+    }
   }
 }
 </script>
