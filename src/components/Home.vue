@@ -27,7 +27,11 @@ export default {
   computed: {
     ...mapState(['loading']),
     festivals () {
-      return this.$store.getters.festivals
+      if (this.$store.state.festivals.length > 0) {
+        return this.$store.state.festivals
+      } else {
+        this.$store.dispatch('getFestivals')
+      }
     }
   }
 }

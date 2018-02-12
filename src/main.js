@@ -12,9 +12,6 @@ new Vue({
   el: '#app',
   router,
   store,
-  created () {
-    this.$store.dispatch('getFestivals')
-  },
   components: { App },
   template: '<App/>'
 })

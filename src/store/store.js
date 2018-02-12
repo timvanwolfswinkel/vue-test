@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import createPersistedState from 'vuex-persistedstate'
 import { fetchFestivals } from '../api/festivals'
 
 Vue.use(Vuex)
@@ -39,6 +40,7 @@ const actions = {
 
 export default new Vuex.Store({
   state,
+  plugins: [createPersistedState()],
   getters,
   actions,
   mutations
